@@ -11,8 +11,8 @@ fs.readdir(componentsDir, (err, files) => {
   }
 
   const componentList = files
-    .filter(file => file.endsWith('.html'))
-    .map(file => path.basename(file, '.html'));
+    .filter(file => file.endsWith('.html.erb'))
+    .map(file => path.basename(file, '.html.erb'));
 
   fs.writeFile(indexFile, JSON.stringify(componentList, null, 2), err => {
     if (err) {
