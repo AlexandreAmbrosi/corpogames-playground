@@ -1,0 +1,47 @@
+//--------------------------------
+//-------CORPOGAMES COLORS--------
+//--------------------------------
+
+// Blue shades
+$c-blue-50: #e6eaf5;
+$c-blue-100: #b2bfe1;
+$c-blue-200: #8ca0d2;
+$c-blue-300: #5875be;
+$c-blue-400: #385ab1;
+$c-blue-500: #06319e;
+$c-blue-600: #052d90;
+$c-blue-700: #042370;
+$c-blue-800: #031b57;
+$c-blue-900: #031542;
+
+// Red shades
+$c-red-50: #ffeceb;
+$c-red-100: #ffc4c1;
+$c-red-200: #ffa8a3;
+$c-red-300: #ff8078;
+$c-red-400: #ff675e;
+$c-red-500: #ff4136;
+$c-red-600: #e83b31;
+$c-red-700: #b52e26;
+$c-red-800: #8c241e;
+$c-red-900: #6b1b17;
+
+:root {
+  /* Dynamic theme hue */
+
+  --color-cta: hsl(var(--hue), 76%, 48%);
+  --color-header: hsl(var(--hue), 90%, 30%);
+  --color-dark: hsl(var(--hue), 90%, 40%);
+  --color-soft: hsl(var(--hue), 40%, 20%);
+  --color-border: hsl(var(--hue), 30%, 30%);
+  --color-not-active-btn: hsl(var(--hue), 30%, 65%);
+  --color-hover: hsl(var(--hue), 100%, 95%);
+  --color-white-brand: hsl(var(--hue), 100%, 98%);
+  --color-btn-disabled: hsl(var(--hue), 95%, 90%);
+  --color-top-2: hsl(var(--hue), 71%, 43%);
+  --color-top-3: hsl(var(--hue), 66%, 38%);
+  --color-top-4: hsl(var(--hue), 66%, 43%);
+
+  /* Elements on Color logic */
+  --text-on-cta: #ffffff; /* Will be dynamically set in JS once at load */
+}

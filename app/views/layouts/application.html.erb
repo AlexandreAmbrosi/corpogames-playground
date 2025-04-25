@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="default">
+<head>
+  <meta charset="UTF-8">
+  <title>CorpoGames UI Playground</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Tailwind (CDN pour test) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Heroicons -->
+  <script src="https://unpkg.com/heroicons@2.0.16/dist/heroicons.min.js"></script>
+
+  <!-- Thème dynamique -->
+  <link id="theme-style" rel="stylesheet" href="/themes/theme-default.css">
+  
+  <!-- Global styles -->
+  <%= stylesheet_link_tag "fonts", media: "all" %>
+  <%= stylesheet_link_tag "application", media: "all", "data-turbo-track": "reload" %>
+
+  <style>
+    .bg-brand { background-color: var(--color-cta); }
+    .bg-brand-dark { background-color: var(--color-dark); }
+    .bg-brand-light { background-color: var(--color-hover); }
+    .text-brand { color: var(--color-cta); }
+    .text-on-cta { color: var(--text-on-cta); }
+  </style>
+</head>
+
+<body class="font-sans">
+  <%= yield %>
+
+  <!-- Scripts JS -->
+  <%#= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
+</body>
+</html>

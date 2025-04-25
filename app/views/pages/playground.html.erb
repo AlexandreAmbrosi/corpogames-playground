@@ -1,0 +1,67 @@
+<div class="flex h-screen">
+  <!-- Sidebar -->
+  <aside class="w-64 bg-gray-100 p-4 border-r flex flex-col">
+    <h1 class="font-[HeuvelGrotesk] text-xl font-bold mb-6">UI Playground</h1>
+
+    <label class="font-semibold mb-2 block">Switch Theme:</label>
+    <select id="themeSelector" class="border px-2 py-1 rounded mb-6">
+      <option value="default">Default</option>
+      <option value="client-a">Largardère</option>
+      <option value="client-b">Spotify</option>
+      <option value="client-c">SFR</option>
+    </select>
+
+    <nav class="flex-1 overflow-y-auto">
+      <ul id="componentList" class="space-y-2"></ul>
+    </nav>
+  </aside>
+
+  <!-- Main content -->
+  <main class="flex-1 p-8 overflow-y-auto">
+    <div id="componentDisplay">
+      <p class="text-gray-500 italic">Select a component from the sidebar to view it here.</p>
+    </div>
+  </main>
+</div>
+
+<script src="/scripts/update-theme-color.js"></script>
+  <script src="/scripts/theme-selector.js"></script>
+  <script>
+    async function loadComponentList() {
+      try {
+        const res = await fetch('components/index.json');
+        if (!res.ok) throw new Error('Component index not found');
+        const files = await res.json();
+        const list = document.getElementById('componentList');
+        list.innerHTML = '';
+        files.forEach(name => {
+          const li = document.createElement('li');
+          const button = document.createElement('button');
+          button.className = 'w-full text-left hover:underline';
+          button.textContent = name.charAt(0).toUpperCase() + name.slice(1);
+          button.onclick = () => showComponent(name);
+          li.appendChild(button);
+          list.appendChild(li);
+        });
+      } catch (err) {
+        console.error('Failed to load component list:', err);
+      }
+    }
+
+    async function showComponent(name) {
+      const container = document.getElementById('componentDisplay');
+      try {
+        const res = await fetch(`components/${name}.html.erb`);
+        if (!res.ok) throw new Error('Component not found');
+        const html = await res.text();
+        container.innerHTML = `<section class="mb-8"><h2 class="text-xl font-bold mb-4">${name.charAt(0).toUpperCase() + name.slice(1)}</h2>` + html + '</section>';
+      } catch (err) {
+        container.innerHTML = '<p class="text-gray-400">Component not found.</p>';
+      }
+    }
+
+    loadComponentList();
+    updateThemeColorsFromHue();
+    // updateTextOnCTAFromThemeCSS();
+  </script>
+
