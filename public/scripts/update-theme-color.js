@@ -7,8 +7,8 @@ function updateThemeColorsFromHue() {
       document.documentElement.style.setProperty(name, val);
     };
     set('--color-cta', 76, 48);
-    set('--color-header', 90, 30);
-    set('--color-dark', 90, 40);
+    set('--color-header', 85, 30);
+    set('--color-dark', 50, 10);
     set('--color-soft', 40, 20);
     set('--color-border', 30, 30);
     set('--color-not-active-btn', 30, 65);
