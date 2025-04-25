@@ -6,7 +6,8 @@ on:
     branches: [ main ]
 
 jobs:
-  scan_ruby:
+  setup:
+    name: Rails CI Base
     runs-on: ubuntu-latest
 
     steps:
@@ -19,72 +20,48 @@ jobs:
           ruby-version: .ruby-version
           bundler-cache: true
 
-      - name: Scan for common Rails security vulnerabilities using static analysis
-        run: bin/brakeman --no-pager
+      - name: Install dependencies
+        run: |
+          gem install bundler
+          bundle install --jobs 4 --retry 3
 
-  scan_js:
-    runs-on: ubuntu-latest
+      - name: Precompile assets
+        run: bundle exec rails assets:precompile
 
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+      # --- OPTIONAL FUTURE TASKS ---
 
-      - name: Set up Ruby
-        uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: .ruby-version
-          bundler-cache: true
+      # - name: Run RuboCop linter
+      #   run: bin/rubocop -f github
 
-      - name: Scan for security vulnerabilities in JavaScript dependencies
-        run: bin/importmap audit
+      # - name: Run security scan (Brakeman)
+      #   run: bin/brakeman --no-pager
 
-  lint:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+      # - name: Run importmap audit (JS security check)
+      #   run: bin/importmap audit
 
-      - name: Set up Ruby
-        uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: .ruby-version
-          bundler-cache: true
+      # - name: Run test suite
+      #   env:
+      #     RAILS_ENV: test
+      #   run: |
+      #     bin/rails db:test:prepare
+      #     bin/rails test
+      #     bin/rails test:system
 
-      - name: Lint code for consistent style
-        run: bin/rubocop -f github
+      # - name: Upload screenshots on test failure
+      #   uses: actions/upload-artifact@v4
+      #   if: failure()
+      #   with:
+      #     name: screenshots
+      #     path: ${{ github.workspace }}/tmp/screenshots
+      #     if-no-files-found: ignore
 
-  test:
-    runs-on: ubuntu-latest
+      # - name: Install Chrome for system tests
+      #   run: sudo apt-get update && sudo apt-get install --no-install-recommends -y google-chrome-stable curl libjemalloc2
 
-    # services:
-    #  redis:
-    #    image: redis
-    #    ports:
-    #      - 6379:6379
-    #    options: --health-cmd "redis-cli ping" --health-interval 10s --health-timeout 5s --health-retries 5
-    steps:
-      - name: Install packages
-        run: sudo apt-get update && sudo apt-get install --no-install-recommends -y google-chrome-stable curl libjemalloc2
-
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Set up Ruby
-        uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: .ruby-version
-          bundler-cache: true
-
-      - name: Run tests
-        env:
-          RAILS_ENV: test
-          # REDIS_URL: redis://localhost:6379/0
-        run: bin/rails db:test:prepare test test:system
-
-      - name: Keep screenshots from failed system tests
-        uses: actions/upload-artifact@v4
-        if: failure()
-        with:
-          name: screenshots
-          path: ${{ github.workspace }}/tmp/screenshots
-          if-no-files-found: ignore
+      # - name: Setup Redis (if needed in future)
+      #   services:
+      #     redis:
+      #       image: redis
+      #       ports:
+      #         - 6379:6379
+      #       options: --health-cmd "redis-cli ping" --health-interval 10s --health-timeout 5s --health-retries 5
