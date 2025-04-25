@@ -1,24 +1,13 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+UI Playground made to create Corpogames components and tests them outside of the main app layout.
 
-Things you may want to cover:
+* Using Ruby and ERB logic
 
-* Ruby version
+* Tailwind via CDN
 
-* System dependencies
+* No Database Links so client's color themes are handled in JS
 
-* Configuration
+* Front has been fastly made, the goal of this tool being to focus on developping component sets coming from Figma so they can be transfered to the main app.
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+* More instructions to come ..
