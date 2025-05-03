@@ -58,15 +58,16 @@
     }
 
 
+
     async function showComponent(name) {
       const container = document.getElementById('componentDisplay');
       try {
         const res = await fetch(`/components/${name}`);
-        if (!res.ok) throw new Error('Component not found');
+        if (!res.ok) throw new Error('Component not found lul');
         const html = await res.text();
         container.innerHTML = `<section class="mb-8"><h2 class="text-xl font-bold mb-4">${name.charAt(0).toUpperCase() + name.slice(1)}</h2>` + html + '</section>';
       } catch (err) {
-        container.innerHTML = '<p class="text-gray-400">Component not found.</p>';
+        container.innerHTML = '<p class="text-gray-400">Component not found. yeah</p>';
       }
     }
 

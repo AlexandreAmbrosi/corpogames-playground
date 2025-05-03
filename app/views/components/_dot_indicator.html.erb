@@ -1,0 +1,20 @@
+<% size ||= "medium" %>
+<% background_color ||= "var(--color-neutral-50)" %>
+<% outline_color ||= "var(--color-neutral-50)" %>
+<% visible = true if visible.nil? %>
+
+<% sizes = {
+    "huge" => { size: "w-6 h-6", outline: "outline-[1.5px]" },
+    "xxlarge" => { size: "w-4 h-4", outline: "outline-[1.5px]" },
+    "xlarge" => { size: "w-3.5 h-3.5", outline: "outline-[1.5px]" },
+    "large" => { size: "w-3 h-3", outline: "outline-[1.5px]" },
+    "medium" => { size: "w-2.5 h-2.5", outline: "outline-[1.2px]" },
+    "small" => { size: "w-2 h-2", outline: "outline-[1px]" },
+    "xsmall" => { size: "w-1.5 h-1.5", outline: "outline-[0.8px]" }
+  } %>
+  
+<% selected = sizes[size.to_s.downcase] || sizes["medium"] %>
+<% visibility_class = visible ? "inline-block" : "hidden" %>
+
+<div class="<%= visibility_class %> <%= selected[:size] %> bg-[<%= background_color %>] rounded-full outline <%= selected[:outline] %> outline-[<%= outline_color %>] transition-all duration-300 ease-in-out"></div>
+  

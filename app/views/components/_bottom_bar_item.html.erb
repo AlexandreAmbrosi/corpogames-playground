@@ -2,10 +2,9 @@
 <% label ||= "Label" %>
 <% active ||= false %>
 
-
 <% active_class = active ? "fill-[var(--color-border)]" : "" %>
 
-<div class="flex flex-col justify-center items-center w-full bg-[var(--color-dark)] min-w-[56px] h-full gap-[4px] <%= 'active' if active %>">
+<div class="flex flex-col justify-center items-center w-full bg-[var(--color-background-dark)] min-w-[56px] h-full gap-[4px] <%= 'active' if active %>">
   <%= inline_svg "icons/hero/outline/#{icon}.svg", class: "w-6 h-6 text-white #{active_class}" %>
   <div class="text-center text-white text-[10px] font-medium font-['HeuvelGrotesk'] leading-none">
     <%= label %>

@@ -1,5 +1,7 @@
 [
-  "bottom-bar-item",
-  "bottom_bar",
-  "button"
+  "_bottom_bar",
+  "_bottom_bar_item",
+  "_button",
+  "_dot_indicator",
+  "_sidebar_item"
 ]

@@ -27,20 +27,19 @@ $c-red-800: #8c241e;
 $c-red-900: #6b1b17;
 
 :root {
-  /* Dynamic theme hue */
-
-  --color-cta: hsl(var(--hue), 76%, 48%);
-  --color-header: hsl(var(--hue), 85%, 30%);
+  //put hue here
+  --color-primary: hsl(var(--hue), 76%, 48%);
+  --color-secondary: hsl(var(--hue), 85%, 30%);
   --color-dark: hsl(var(--hue), 50%, 10%);
-  --color-soft: hsl(var(--hue), 40%, 20%);
-  --color-border: hsl(var(--hue), 30%, 30%);
-  --color-not-active-btn: hsl(var(--hue), 30%, 65%);
-  --color-hover: hsl(var(--hue), 100%, 95%);
-  --color-white-brand: hsl(var(--hue), 100%, 98%);
-  --color-btn-disabled: hsl(var(--hue), 95%, 90%);
-  --color-top-2: hsl(var(--hue), 71%, 43%);
-  --color-top-3: hsl(var(--hue), 66%, 38%);
-  --color-top-4: hsl(var(--hue), 66%, 43%);
+  --color-neutral-600: hsl(var(--hue), 40%, 20%);
+  --color-neutral-400: hsl(var(--hue), 30%, 30%);
+  --color-unactive: hsl(var(--hue), 30%, 65%);
+  ---color-hover-light: hsl(var(--hue), 100%, 95%);
+  --color-neutral-50: hsl(var(--hue), 100%, 98%);
+  --color-disabled: hsl(var(--hue), 95%, 90%);
+  --color-accent-2: hsl(var(--hue), 71%, 43%);
+  --color-accent-3: hsl(var(--hue), 66%, 38%);
+  --color-accent-4: hsl(var(--hue), 66%, 43%);
 
   /* Elements on Color logic */
   --text-on-cta: #ffffff; /* Will be dynamically set in JS once at load */

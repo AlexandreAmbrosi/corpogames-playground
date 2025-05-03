@@ -6,16 +6,16 @@ function updateThemeColorsFromHue() {
       const val = `hsl(${hue}, ${s}%, ${l}%)`;
       document.documentElement.style.setProperty(name, val);
     };
-    set('--color-cta', 76, 48);
-    set('--color-header', 85, 30);
-    set('--color-dark', 50, 10);
-    set('--color-soft', 40, 20);
-    set('--color-border', 30, 30);
-    set('--color-not-active-btn', 30, 65);
-    set('--color-hover', 100, 95);
-    set('--color-white-brand', 100, 98);
-    set('--color-btn-disabled', 95, 90);
-    set('--color-top-2', 71, 43);
-    set('--color-top-3', 66, 38);
-    set('--color-top-4', 66, 43);
+    set('--color-primary', 76, 48);
+    set('--color-primary-secondary', 85, 30);
+    set('--color-background-dark', 50, 10);
+    set('--color-neutral-600', 40, 20);
+    set('--color-neutral-400', 30, 30);
+    set('---color-unactive', 30, 65);
+    set('--color-hover-light', 100, 95);
+    set('---color-neutral-50', 100, 98);
+    set('--color-disabled', 95, 90);
+    set('---color-accent-2', 71, 43);
+    set('--color-accent-3', 66, 38);
+    set('--color-accent-4', 66, 43);
 }
