@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 
 // 🔁 Nouveau chemin vers app/components
-const componentsDir = path.join(__dirname, '../../app/components');
+const componentsDir = path.join(__dirname, '../../app/views/components');
 const indexFile = path.join(componentsDir, 'index.json');
 
 fs.readdir(componentsDir, (err, files) => {

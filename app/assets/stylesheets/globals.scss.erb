@@ -34,13 +34,35 @@ $c-red-900: #6b1b17;
   --color-neutral-600: hsl(var(--hue), 40%, 20%);
   --color-neutral-400: hsl(var(--hue), 30%, 30%);
   --color-unactive: hsl(var(--hue), 30%, 65%);
-  ---color-hover-light: hsl(var(--hue), 100%, 95%);
+  --color-hover-light: hsl(var(--hue), 100%, 95%);
   --color-neutral-50: hsl(var(--hue), 100%, 98%);
   --color-disabled: hsl(var(--hue), 95%, 90%);
   --color-accent-2: hsl(var(--hue), 71%, 43%);
   --color-accent-3: hsl(var(--hue), 66%, 38%);
   --color-accent-4: hsl(var(--hue), 66%, 43%);
 
+  /* Custom Opacities or Gradients */
+  --color-accent-3-33: hsla(var(--hue), 66%, 38%, 0.33);
+
   /* Elements on Color logic */
   --text-on-cta: #ffffff; /* Will be dynamically set in JS once at load */
+}
+
+
+
+//----------------//
+//---COMPONENTS---//
+//----------------//
+
+//--Sidebar--//
+.sidebar-hover:hover {
+  outline: 1px solid var(--color-accent-3);
+  outline-offset: -1px;
+  background-color: var(--color-accent-3-33);
+}
+
+.sidebar-active:focus {
+  outline: 1px solid var(--color-accent-4);
+  outline-offset: -1px;
+  background-color: var(--color-accent-3);
 }

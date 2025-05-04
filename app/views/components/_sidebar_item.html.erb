@@ -1,25 +1,43 @@
-<% icon ||= "home" %>
-<% label ||= "Label" %>
-<% active ||= false %>
+<% path        ||= "#" %>
+<% icon        ||= "home" %>
+<% label       ||= "Label" %>
+<% active      ||= false %>
+<% size        ||= "medium" %>
+<% show_dot    = false if show_dot.nil? %>
+<% item_type   ||= "main" %> <%# "main" or "sub" %>
 <% active_class = active ? "fill-[var(--color-border)]" : "" %>
 
-<!--Large-->
-<div class="items-center justify-between w-full inline-flex bg-[var(--color-background-dark)] py-2">
-    <div id="left-content" class="self-stretch inline-flex justify-start items-center gap-2 pl-4">
+<% sizes = {
+  "large"  => { icon_wrapper: "w-6 h-6", icon: "w-[20px] h-[20px]", text: "text-base", chevron: "w-6 h-6", chevron_icon: "w-[20px] h-[20px]" },
+  "medium" => { icon_wrapper: "w-5 h-5", icon: "w-[18px] h-[18px]", text: "text-sm",   chevron: "w-5 h-5", chevron_icon: "w-[18px] h-[18px]" },
+  "small"  => { icon_wrapper: "w-4 h-4", icon: "w-[16px] h-[16px]", text: "text-xs",   chevron: "w-4 h-4", chevron_icon: "w-[16px] h-[16px]" }
+} %>
+
+<% selected = sizes[size.to_s.downcase] || sizes["medium"] %>
+
+<%= link_to path, class: "w-full block rounded-lg sidebar-hover sidebar-active flex items-center justify-between bg-[var(--color-secondary)] py-2 px-2" do %>
+  <div class="flex w-full justify-between items-center">
+    <div id="left-content" class="self-stretch inline-flex justify-start items-center gap-2">
+      <% if show_dot %>
         <%= render "components/dot_indicator", size: "xsmall", background_color: "var(--color-neutral-50)", outline_color: "var(--color-neutral-50)" %>
-        <div class="w-6 h-6 relative overflow-hidden flex items-center justify-center">
-            <%= inline_svg "icons/hero/outline/#{icon}.svg", class: "w-[18px] h-[18px] text-white #{active_class}" %>
-        </div>  
-        <div class="text-white text-sm font-medium font-['HeuvelGrotesk'] mt-1">Label</div>
-    </div>
-    <div id="right-content" class="pr-2">
-        <div class="text-white text-sm font-medium font-['HeuvelGrotesk'] hidden"></div><!--Notification System - Unused for now-->
-        <div class="w-6 h-6 relative overflow-hidden flex items-center justify-center">
-            <%= inline_svg "icons/hero/outline/chevron-down.svg", class: "w-[18px] h-[18px] text-white #{active_class}" %><!--Down arrows most of the time-->
+      <% end %>
+
+      <% if item_type == "main" %>
+        <div class="<%= selected[:icon_wrapper] %> relative overflow-hidden flex items-center justify-center">
+          <%= inline_svg "icons/hero/outline/#{icon}.svg", class: "#{selected[:icon]} text-white #{active_class}" %>
         </div>
+      <% end %>
+
+      <div class="text-white <%= selected[:text] %> font-medium font-['HeuvelGrotesk'] mt-1">
+        <%= label %>
+      </div>
     </div>
-</div>
 
-<!--Medium-->
-
-<!--Small-->
+    <div id="right-content" class="pr-1">
+      <div class="text-white <%= selected[:text] %> font-medium font-['HeuvelGrotesk'] hidden"></div>
+      <div class="<%= selected[:chevron] %> relative overflow-hidden flex items-center justify-center">
+        <%= inline_svg "icons/hero/outline/chevron-down.svg", class: "#{selected[:chevron_icon]} text-white #{active_class}" %>
+      </div>
+    </div>
+  </div>
+<% end %>
