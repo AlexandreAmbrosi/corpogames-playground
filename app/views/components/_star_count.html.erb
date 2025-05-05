@@ -1,0 +1,23 @@
+<% size ||= "xlarge" %>
+<% count ||= 99 %> <!--TODO-->
+
+<% sizes = {
+  "xlarge" => { font: "text-3xl mt-[7px]", star: "w-6 h-6" },
+  "large"  => { font: "text-2xl mt-[6px]", star: "w-5 h-5" },
+  "medium" => { font: "text-xl mt-[5px]", star: "w-4 h-4" },
+  "small"  => { font: "text-base mt-[4px]", star: "w-3 h-3" }
+} %>
+
+<% selected = sizes[size.to_s.downcase] || sizes["xlarge"] %>
+
+<div class="flex items-center gap-1">
+  <div class="text-[var(--color-dark)] font-bold font-['HeuvelGrotesk'] leading-normal <%= selected[:font] %>">
+    <%= count %>
+  </div>
+  <div class="<%= selected[:star] %> bg-gradient-to-b from-[var(--color-primary)] to-[var(--color-neutral-400)] mask-star"></div>
+</div>
+
+
+<!------------------------------------------>
+<!-- TO-ADD | Next feature = Dashed Stars -->
+<!------------------------------------------>

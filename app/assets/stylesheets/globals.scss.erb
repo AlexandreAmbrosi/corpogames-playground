@@ -43,6 +43,7 @@ $c-red-900: #6b1b17;
 
   /* Custom Opacities or Gradients */
   --color-accent-3-33: hsla(var(--hue), 66%, 38%, 0.33);
+  --color-neutral-50-20: hsla(var(--hue), 100%, 98%, 0.2);
 
   /* Elements on Color logic */
   --text-on-cta: #ffffff; /* Will be dynamically set in JS once at load */
@@ -65,4 +66,15 @@ $c-red-900: #6b1b17;
   outline: 1px solid var(--color-accent-4);
   outline-offset: -1px;
   background-color: var(--color-accent-3);
+}
+
+.mask-star {
+  -webkit-mask-image: image-url("redesign/star-counter-full.svg");
+  mask-image: image-url("redesign/star-counter-full.svg");
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-size: cover;
+  mask-size: cover;
+  -webkit-mask-position: center;
+  mask-position: center;
 }

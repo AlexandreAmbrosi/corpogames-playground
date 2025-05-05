@@ -5,17 +5,18 @@
 <% size        ||= "medium" %>
 <% show_dot    = false if show_dot.nil? %>
 <% item_type   ||= "main" %> <%# "main" or "sub" %>
-<% active_class = active ? "fill-[var(--color-border)]" : "" %>
+<% active_class = active ? "fill-[var(--color-neutral-50-20)]" : "" %>
+<% show_chevron = true if show_chevron.nil? %>
 
 <% sizes = {
-  "large"  => { icon_wrapper: "w-6 h-6", icon: "w-[20px] h-[20px]", text: "text-base", chevron: "w-6 h-6", chevron_icon: "w-[20px] h-[20px]" },
-  "medium" => { icon_wrapper: "w-5 h-5", icon: "w-[18px] h-[18px]", text: "text-sm",   chevron: "w-5 h-5", chevron_icon: "w-[18px] h-[18px]" },
-  "small"  => { icon_wrapper: "w-4 h-4", icon: "w-[16px] h-[16px]", text: "text-xs",   chevron: "w-4 h-4", chevron_icon: "w-[16px] h-[16px]" }
+  "large"  => { icon_wrapper: "w-6 h-6", icon: "w-[24px] h-[24px]", text: "text-base", chevron: "w-6 h-6", chevron_icon: "w-[20px] h-[20px]" },
+  "medium" => { icon_wrapper: "w-5 h-5", icon: "w-[22px] h-[22px]", text: "text-sm",   chevron: "w-5 h-5", chevron_icon: "w-[18px] h-[18px]" },
+  "small"  => { icon_wrapper: "w-4 h-4", icon: "w-[20px] h-[20px]", text: "text-xs",   chevron: "w-4 h-4", chevron_icon: "w-[16px] h-[16px]" }
 } %>
 
 <% selected = sizes[size.to_s.downcase] || sizes["medium"] %>
 
-<%= link_to path, class: "w-full block rounded-lg sidebar-hover sidebar-active flex items-center justify-between bg-[var(--color-secondary)] py-2 px-2" do %>
+<%= link_to path, class: "w-full block rounded-lg sidebar-hover sidebar-active flex items-center justify-between py-2 px-2" do %>
   <div class="flex w-full justify-between items-center">
     <div id="left-content" class="self-stretch inline-flex justify-start items-center gap-2">
       <% if show_dot %>
@@ -24,7 +25,7 @@
 
       <% if item_type == "main" %>
         <div class="<%= selected[:icon_wrapper] %> relative overflow-hidden flex items-center justify-center">
-          <%= inline_svg "icons/hero/outline/#{icon}.svg", class: "#{selected[:icon]} text-white #{active_class}" %>
+          <%= inline_svg "redesign/icons/hero/outline/#{icon}.svg", class: "#{selected[:icon]} text-white #{active_class}" %>
         </div>
       <% end %>
 
@@ -35,9 +36,16 @@
 
     <div id="right-content" class="pr-1">
       <div class="text-white <%= selected[:text] %> font-medium font-['HeuvelGrotesk'] hidden"></div>
-      <div class="<%= selected[:chevron] %> relative overflow-hidden flex items-center justify-center">
-        <%= inline_svg "icons/hero/outline/chevron-down.svg", class: "#{selected[:chevron_icon]} text-white #{active_class}" %>
-      </div>
+      <% if show_chevron %>
+        <div class="<%= selected[:chevron] %> relative overflow-hidden flex items-center justify-center">
+          <%= inline_svg "redesign/icons/hero/outline/chevron-down.svg", class: "#{selected[:chevron_icon]} text-white #{active_class}" %>
+        </div>
+      <% end %>
     </div>
   </div>
 <% end %>
+
+
+<!----------------------------------------------------------------------------------->
+<!-- TO-ADD | Next feature = Notifications / Page & Sub-page Logic / Number Badges -->
+<!----------------------------------------------------------------------------------->

@@ -1,0 +1,49 @@
+<% size ||= "medium" %>
+<% shape ||= "circle" %>
+<% custom_size = nil if defined?(custom_size).nil? %>
+<% custom_radius = nil if defined?(custom_radius).nil? %>
+<% image_path ||= "redesign/profile_pictures/man.jpg" %> <!--TODO-->
+
+<% sizes = {
+  "xxxl"     => "w-24 h-24",   # 96px
+  "xxlarge"  => "w-16 h-16",   # 64px
+  "xlarge"   => "w-14 h-14",   # 56px
+  "large"    => "w-12 h-12",   # 48px
+  "medium"   => "w-10 h-10",   # 40px
+  "small"    => "w-8 h-8",     # 32px
+  "xsmall"   => "w-6 h-6"      # 24px
+} %>
+
+<% rounded_by_size = {
+  "xxxl"     => "rounded-[26px]",
+  "xxlarge"  => "rounded-[18px]",
+  "xlarge"   => "rounded-[16px]",
+  "large"    => "rounded-[14px]",
+  "medium"   => "rounded-[12px]",
+  "small"    => "rounded-[10px]",
+  "xsmall"   => "rounded-[6px]"
+} %>
+
+<% selected_size_class = custom_size.present? ? "w-[#{custom_size}] h-[#{custom_size}]" : sizes[size.to_s.downcase] || sizes["medium"] %>
+
+<% selected_radius_class =
+  case shape
+  when "circle"
+    "rounded-[400px]"
+  when "square"
+    "rounded-none"
+  when "rounded"
+    custom_radius.present? ? "rounded-[#{custom_radius}]" : (rounded_by_size[size.to_s.downcase] || "rounded-[12px]")
+  else
+    "rounded-[400px]"
+  end
+%>
+
+<div class="<%= selected_size_class %> relative flex items-center justify-center <%= selected_radius_class %> outline outline-2 outline-offset-[-1px] outline-white overflow-hidden">
+  <%= image_tag image_path, class: "w-full h-full object-cover", alt: "Photo de profil" %>
+</div>
+
+
+<!-------------------------------------------------------------------->
+<!-- TO-ADD | Next feature = Placeholders Corpogames + Avatar Icons -->
+<!-------------------------------------------------------------------->

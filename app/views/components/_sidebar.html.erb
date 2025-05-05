@@ -1,0 +1,71 @@
+<div id="main-container" class="min-h-screen max-w-80 min-w-60 pt-6 relative bg-[var(--color-accent-4)] rounded-2xl border-r border-t border-b border-[var(--color-accent-4)] inline-flex flex-col justify-start items-start gap-5 overflow-hidden">
+  
+    <!-- Corpogames Logo -->
+    <div class="px-4">
+      <%= image_tag "redesign/new-white-corpogames-logo.svg", class: "w-40 h-[26px]", alt: "Logo Corpogames" %>
+    </div>
+  
+    <!-- Tabs background + group -->
+    <div class="w-full flex-1 bg-[var(--color-secondary)] relative rounded-t-2xl border-r border-t border-b border-[var(--color-accent-4)] overflow-hidden p-3 flex flex-col justify-between">
+      
+      <!-- Background icon (faded) -->
+      <%= image_tag "redesign/corpogames-logo-sidebar.svg",
+                    class: "w-[700px] h-auto absolute bottom-0 left-0 pointer-events-none",
+                    alt: "Corpogames Logo Faded" %>
+  
+      <!-- Tabs list -->
+      <div class="relative z-10 flex flex-col gap-1">
+        <%= render "components/sidebar_item",
+                    label: "Accueil",
+                    icon: "home",
+                    path: "#",
+                    size: "large",
+                    show_chevron: false,
+                    active: current_page?("#") %>
+  
+        <%= render "components/sidebar_item",
+                    label: "Résultats",
+                    icon: "star",
+                    path: "#",
+                    size: "large",
+                    show_chevron: false,
+                    active: true %>
+  
+        <%= render "components/sidebar_item",
+                    label: "Classement",
+                    icon: "chart-bar",
+                    path: "#",
+                    size: "large",
+                    show_chevron: false,
+                    active: current_page?("#") %>
+  
+        <%= render "components/sidebar_item",
+                    label: "Profil",
+                    icon: "user",
+                    path: "#",
+                    size: "large",
+                    show_chevron: false,
+                    active: current_page?("#") %>
+      </div>
+  
+      <!-- Player Info -->
+      <div class="self-stretch p-2 rounded-tl-[64px] rounded-tr-2xl rounded-bl-[64px] rounded-br-2xl outline outline-1 outline-offset-[-1px] outline-[var(--color-accent-4)] inline-flex justify-between items-center gap-4">
+          <!-- Player block (photo + nom + entreprise) -->
+          <%= render "components/player_block",
+          name: "John Dough Doe",
+          company: "Équipe Lagardère",
+          size: "large",
+          name_color: "text-white",
+          company_color: "text-white",
+          profile_pictures_options: {
+            shape: "circle"
+          }
+          %>
+        
+          <!-- Star count -->
+          <%# <%= render "components/star_count", count: 190, size: "large" %>
+      </div>
+  
+    </div>
+  </div>
+  

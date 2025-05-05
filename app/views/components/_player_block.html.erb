@@ -1,0 +1,33 @@
+<% size ||= "medium" %>
+<% name ||= "John Dough Doe" %> <!-- TODO -->
+<% company ||= "Équipe Lagardère" %> <!-- TODO -->
+<% profile_pictures_options ||= {} %>
+<% name_color ||= "text-[var(--color-dark)]" %>
+<% company_color ||= "text-[var(--color-dark)]" %>
+
+<% sizes = {
+  "xxl"      => { name: "text-4xl leading-loose",       company: "text-2xl leading-normal",     picture: "xxxl" },
+  "xlarge"   => { name: "text-2xl leading-snug",         company: "text-base leading-none",      picture: "xxlarge" },
+  "large"    => { name: "text-xl leading-tight",         company: "text-sm leading-none",        picture: "xlarge" },
+  "medium"   => { name: "text-lg leading-none",          company: "text-xs leading-[0.75rem]",   picture: "large" },
+  "small"    => { name: "text-sm leading-none",          company: "text-[10px] leading-[10px]",  picture: "medium" },
+  "xsmall"   => { name: "text-xs leading-[0.75rem]",     company: "text-[8px] leading-[8px]",    picture: "small" },
+  "xxsmall"  => { name: "text-[10px] leading-[10px]",    company: "text-[6px] leading-[6px]",    picture: "xsmall" }
+} %>
+
+<% selected = sizes[size.to_s.downcase] || sizes["xxl"] %>
+
+<div class="inline-flex justify-start items-center gap-4">
+  <!-- Profile Picture -->
+  <%= render "components/profile_picture_player", profile_pictures_options.merge({ size: selected[:picture] }) %>
+
+  <!-- Name & Company -->
+  <div class="inline-flex flex-col justify-start items-start gap-1">
+    <div class="<%= name_color %> font-bold font-['HeuvelGrotesk'] <%= selected[:name] %>">
+      <%= name %>
+    </div>
+    <div class="<%= company_color %> font-normal font-['HeuvelGrotesk'] <%= selected[:company] %>">
+      <%= company %>
+    </div>
+  </div>
+</div>
